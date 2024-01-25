@@ -70,7 +70,7 @@ void store_task_list()
     try
     {
         /* code */
-        FILE *file = fopen("Task_List", "w+");
+        FILE *file = fopen("Task_List.txt", "w+");
         if (file)
         {
             for (int i = 0; i < task_list.size(); i++)
