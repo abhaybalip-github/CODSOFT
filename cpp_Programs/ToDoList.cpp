@@ -7,8 +7,6 @@
 
 std::vector<std::string> task_list;
 std::vector<bool> task_status;
-bool close = false;
-int choice;
 
 // function to insert new task in list
 void insert_task(std::string task)
@@ -18,7 +16,7 @@ void insert_task(std::string task)
     std::cout << "Task Added \n\n";
 }
 
-// delete a task from list
+// delete a task from list using task number
 void delete_task(int key)
 {
     if (task_list.size() > 0)
@@ -33,10 +31,10 @@ void delete_task(int key)
     }
 }
 
-// reverse the task status
+// reverse the task status using task number
 void change_status(int key)
 {
-    if (task_list.size() <= key)
+    if (key <= task_list.size())
     {
         task_status[key - 1] = !task_status[key - 1];
     }
@@ -66,12 +64,31 @@ void display_task()
     }
 }
 
-// 
+// store task list in a external file
 void store_task_list()
 {
+    try
+    {
+        /* code */
+        FILE *file = fopen("Task_List", "w+");
+        if (file)
+        {
+            for (int i = 0; i < task_list.size(); i++)
+            {
+                fprintf(file, "%s\t%s\n\n", task_list[i], task_status[i]);
+            }
+        }
+        fclose(file);
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << "\n\n";
+    }
 }
 int main(int argc, char const *argv[])
 {
+    bool close = false;
+    int choice = 0;
     /* code */
     while (!close)
     {
@@ -80,6 +97,8 @@ int main(int argc, char const *argv[])
                   << "Avaliable Options :: \n";
         std::cout << "1.Enter Task\t2.Delete Task\n3.Display Task\t4.Change Status\n";
         std::cout << "5.Close Task\t6.Store in File\n\n";
+        std::cout << "Enter choice Number : ";
+        std::cin >> choice;
 
         switch (choice)
         {
@@ -87,7 +106,7 @@ int main(int argc, char const *argv[])
         {
             std::string task;
             std::cout << "Enter task: ";
-            std::getline(std::cin, task);
+            std::cin >> task;
             insert_task(task);
             break;
         }
@@ -111,7 +130,8 @@ int main(int argc, char const *argv[])
             break;
         }
         case 5:
-            std::cout << "Closing task list...\n";
+            std::cout << "Closing task list\n";
+            close = true;
         case 6:
             store_task_list();
             break;
