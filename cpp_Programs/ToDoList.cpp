@@ -75,7 +75,7 @@ void store_task_list()
         {
             for (int i = 0; i < task_list.size(); i++)
             {
-                fprintf(file, "%s\t%s\n\n", task_list[i], task_status[i]);
+                fprintf(file, "%s \t %s \n", task_list[i], task_status[i]);
             }
         }
         fclose(file);
