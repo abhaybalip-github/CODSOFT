@@ -1,6 +1,7 @@
 // cpp program
 // console based to-do list
 #include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <vector>
 #include <iterator>
@@ -69,20 +70,22 @@ void store_task_list()
 {
     try
     {
-        /* code */
-        FILE *file = fopen("Task_List.txt", "w+");
-        if (file)
+        std::ofstream file("Task_List.txt");
+        if (file.is_open())
         {
             for (int i = 0; i < task_list.size(); i++)
             {
-                fprintf(file, "%s \t %s \n", task_list[i], task_status[i]);
+                file << task_list[i] << "\t" << task_status[i] << "\n";
             }
         }
-        fclose(file);
+        else
+        {
+            throw std::runtime_error("Failed to open file: Task_List.txt");
+        }
     }
     catch (const std::exception &e)
     {
-        std::cerr << e.what() << "\n\n";
+        std::cerr << "Error storing task list: " << e.what() << std::endl; // Use std::endl for flushing
     }
 }
 int main(int argc, char const *argv[])
