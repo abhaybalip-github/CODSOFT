@@ -1,8 +1,7 @@
 # python
-# ToDo List
-import tkinter;
+# class to implement and manage task list
+import tkinter as tk;
 
-# Data structure to manage task list
 class TaskList:
     def __init__(self) -> None:
         self.task_count = 0
@@ -37,3 +36,5 @@ class TaskList:
             file.close()
         else:
             print('No Task Avaliable',end='\n\n')
+
+# main_window = tk.Tk()
