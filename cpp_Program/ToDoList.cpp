@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <vector>
 #include <iterator>
+#include <string.h>
 
 std::vector<std::string> task_list;
 std::vector<bool> task_status;
@@ -109,7 +110,7 @@ int main(int argc, char const *argv[])
         {
             std::string task;
             std::cout << "Enter task: ";
-            std::cin >> task;
+            std::cin>>task;
             insert_task(task);
             break;
         }

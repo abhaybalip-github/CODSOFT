@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
     while (!close)
     {
         /* code */
-        std::cout << "Welcome to Calculator\nEnter Num1 : ";
+        std::cout << "\nWelcome to Calculator\nEnter Num1 : ";
         std::cin >> num1;
         std::cout << "Enter Num2 : ";
         std::cin >> num2;
